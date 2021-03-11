@@ -576,6 +576,7 @@ MonoBehaviour:
   height: 0.4
   attachedGroup: {fileID: 0}
   attachedCollider: {fileID: 15804899501634488}
+  snapPinObject: {fileID: 607242384638816787}
   groupX: 0
   groupY: 0
 --- !u!1001 &607242385494547801

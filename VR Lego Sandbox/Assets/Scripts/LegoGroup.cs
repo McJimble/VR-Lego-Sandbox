@@ -93,31 +93,30 @@ public class LegoGroup : MonoBehaviour
             for (int j = 0; j < newY; j++)
             {
                 // 0,0 prefab will remain the same.
+                if ((i == 0 && j == 0)) continue;
 
                 // Set new instance of lego component
-                if (!(i == 0 && j == 0))
-                    legoPieces[i, j] = Instantiate(baseLegoData.gameObject).GetComponent<Lego>();
+                legoPieces[i, j] = Instantiate(baseLegoData.gameObject).GetComponent<Lego>();
 
                 // Set x and y value for piece and offset position accordingly.
                 legoPieces[i, j].SetGroupElement(newX, newY);
                 Vector3 setPos = baseLegoData.transform.TransformPoint(Vector3.zero);
-                setPos += (baseLegoData.transform.right * Lego.sqSize * (i + 0));
+                setPos += (baseLegoData.transform.right * Lego.sqSize * i);
                 setPos += (baseLegoData.transform.forward * Lego.sqSize * j);
 
                 legoPieces[i, j].transform.position = setPos;
 
-                Debug.Log("Setting lego " + i + "," + j + " to pos: " + setPos);
             }
         }
 
         // Adjust legoGroup position to center of group.
         Vector3 newPos = transform.TransformPoint(Vector3.zero);
         float addMagnitudeX = Lego.sqSize * (newX / 2);
-        addMagnitudeX += (newX % 2 == 0) ? (Lego.sqSize / 2f) : 0f;
-        newPos += baseLegoData.transform.right * (addMagnitudeX - Lego.sqSize);
+        addMagnitudeX += (newX % 2 == 0) ? -(Lego.sqSize / 2f) : 0f;
+        newPos += baseLegoData.transform.right * addMagnitudeX;
 
         float addMagnitudeY = Lego.sqSize * (newY / 2);
-        addMagnitudeY += (newY % 2 == 0) ? (Lego.sqSize / 2f) : 0f;
+        addMagnitudeY += (newY % 2 == 0) ? -(Lego.sqSize / 2f) : 0f;
         newPos += baseLegoData.transform.forward * addMagnitudeY;
 
         transform.position = newPos;
@@ -131,8 +130,6 @@ public class LegoGroup : MonoBehaviour
                 legoPieces[i, j].transform.parent = this.transform;
             }
         }
-
-        Debug.Log("Moving group to " + newPos);
 
         // Adjust boxCollider size to cover all new legos.
         Vector3 newSize = new Vector3(Lego.sqSize * newX, baseLegoData.height, Lego.sqSize * newY);
