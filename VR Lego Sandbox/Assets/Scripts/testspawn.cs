@@ -23,7 +23,7 @@ public class testspawn : MonoBehaviour
         // Spawn in front of player by using the forward direction of the camera's transform and offset a bit.
         Instantiate(myPrefab, player.transform.position + (player.transform.forward * 3), Quaternion.identity);
         //ColorSwatch.GetComponent<MeshRenderer>().material.GetColor
-        //myPrefab.GetComponent<LegoGroup>().ChangeGroupColor(ColorSwatch.GetComponent<Renderer>().material.color);
+        myPrefab.GetComponent<LegoGroup>().ChangeGroupColor(ColorSwatch.GetComponent<Renderer>().material.color);
     }
 
 }
