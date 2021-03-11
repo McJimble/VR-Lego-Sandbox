@@ -41,6 +41,10 @@ public class LegoGroup : MonoBehaviour
     private void Update()
     {
         ChangeGroupColor(testColor);
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            RefreshLegoGroup(testSize.x - 1, testSize.y - 1);
+        }
     }
 
     // Initializes this group of legos for later.
@@ -138,13 +142,6 @@ public class LegoGroup : MonoBehaviour
 
     public void ChangeGroupColor(Color newColor)
     {
-        //for(int x = 0; x < legoPieces.GetLength(0); x++)
-        //{
-        //    for(int y = 0; y < legoPieces.GetLength(1); y++)
-        //    {
-        //        legoPieces[x, y].
-        //    }
-        //}
         baseLegoData.LegoRenderer.sharedMaterial.color = newColor;
     }
 }

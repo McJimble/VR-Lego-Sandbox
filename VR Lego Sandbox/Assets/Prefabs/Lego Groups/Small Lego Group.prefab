@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 3377499956876342780}
   m_Layer: 0
   m_Name: Small Lego Group
-  m_TagString: Untagged
+  m_TagString: LegoGroup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseLegoData: {fileID: 8620908119883708598}
   groupCollider: {fileID: 3377499956876342781}
-  testSize: {x: 2, y: 3}
+  testSize: {x: 2, y: 2}
   testColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &6048226424484943149
 GameObject:
