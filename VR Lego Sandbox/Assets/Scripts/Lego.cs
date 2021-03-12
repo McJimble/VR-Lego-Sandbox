@@ -26,29 +26,15 @@ public class Lego : MonoBehaviour
     [SerializeField] private int groupX;
     [SerializeField] private int groupY;
 
-    private Material legoMaterial;
-    private Renderer legoRenderer;
-
-    public Material LegoMaterial
-    {
-        get 
-        {
-            if (legoMaterial == null)
-                legoMaterial = LegoRenderer.material;
-            return legoMaterial; 
-        }
-        private set
-        {
-            legoMaterial = value;
-        }
-    }
+    [SerializeField] private Renderer mainLegoRenderer;
 
     public Renderer LegoRenderer
     {
         get
         {
-            legoRenderer = GetComponentInChildren<Renderer>();
-            return legoRenderer;
+            if (mainLegoRenderer == null)
+                mainLegoRenderer = GetComponentInChildren<Renderer>();
+            return mainLegoRenderer;
         }
     }
 
@@ -105,13 +91,12 @@ public class Lego : MonoBehaviour
     // material of any copy of this lego by changing LegoRenderer.sharedMaterial.
     public void RefreshLegoMaterial()
     {
-        LegoMaterial = new Material(LegoMaterial);
-        LegoRenderer.material = LegoMaterial;
-        snapPinRenderer.material = LegoMaterial;
+        LegoRenderer.material = new Material(mainLegoRenderer.material);
+        snapPinRenderer.material = mainLegoRenderer.material;
     }
 
     private void OnDestroy()
     {
-        Destroy(LegoMaterial);
+        Destroy(mainLegoRenderer.material);
     }
 }

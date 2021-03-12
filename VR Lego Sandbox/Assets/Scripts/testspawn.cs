@@ -21,9 +21,9 @@ public class testspawn : MonoBehaviour
         // Old spawn code, changed below to always spawn where player is facing.
         //Instantiate(myPrefab, new Vector3(player.transform.position.x + 1, player.transform.position.y, player.transform.position.z + 1), transform.rotation);
         // Spawn in front of player by using the forward direction of the camera's transform and offset a bit.
-        Instantiate(myPrefab, player.transform.position + (player.transform.forward * 3), Quaternion.identity);
+        GameObject newObj = Instantiate(myPrefab, player.transform.position + (player.transform.forward * 3), Quaternion.identity);
         //ColorSwatch.GetComponent<MeshRenderer>().material.GetColor
-        myPrefab.GetComponent<LegoGroup>().ChangeGroupColor(ColorSwatch.GetComponent<Renderer>().material.color);
+        newObj.GetComponent<LegoGroup>().ChangeGroupColor(ColorSwatch.GetComponent<Renderer>().material.color);
     }
 
 }

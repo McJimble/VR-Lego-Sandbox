@@ -21,9 +21,7 @@ public class LegoGroup : MonoBehaviour
     private bool initialized = false;
 
     [SerializeField] private Vector2Int testSize;
-    [SerializeField] private Color testColor;
-
-    private Lego originLego;
+    public Color testColor;
 
     private void Start()
     {
@@ -35,21 +33,18 @@ public class LegoGroup : MonoBehaviour
         // Seems stupid, but this makes Unity duplicate the current material so that
         // all clones of this base lego can be changed using ONE call of sharedMaterial
         // instead of looping through the entire group again.
-        originLego = Instantiate(baseLegoData).GetComponent<Lego>();
-        Destroy(baseLegoData.gameObject);
-
-        originLego.RefreshLegoMaterial();
-        testColor = originLego.LegoMaterial.color;
+        baseLegoData.RefreshLegoMaterial();
+        testColor = baseLegoData.LegoRenderer.material.color;
         InitGroup();
     }
 
     private void Update()
     {
         ChangeGroupColor(testColor);
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            RefreshLegoGroup(testSize.x - 1, testSize.y - 1);
-        }
+        //if(Input.GetKeyDown(KeyCode.X))
+        //{
+        //    RefreshLegoGroup(testSize.x - 1, testSize.y - 1);
+        //}
     }
 
     // Initializes this group of legos for later.
@@ -58,9 +53,9 @@ public class LegoGroup : MonoBehaviour
         this.groupCollider = GetComponent<BoxCollider>();
 
         // Start 2d array as one element with legoData.
-        legoPieces = new Lego[1, 1] { { originLego } };
-        originLego.transform.parent = this.transform;
-        originLego.transform.position = this.transform.TransformPoint(Vector3.zero);
+        legoPieces = new Lego[1, 1] { { baseLegoData } };
+        baseLegoData.transform.parent = this.transform;
+        baseLegoData.transform.position = this.transform.TransformPoint(Vector3.zero);
 
         initialized = true;
         RefreshLegoGroup(testSize.x, testSize.y);
@@ -93,9 +88,9 @@ public class LegoGroup : MonoBehaviour
 
         // Refresh Lego Array
         legoPieces = new Lego[newX, newY];
-        legoPieces[0, 0] = originLego;
+        legoPieces[0, 0] = baseLegoData;
 
-        originLego.transform.parent = null;
+        baseLegoData.transform.parent = null;
         // Spawn and position new lego prefabs.
         for (int i = 0; i < newX; i++)
         {
@@ -105,13 +100,13 @@ public class LegoGroup : MonoBehaviour
                 if ((i == 0 && j == 0)) continue;
 
                 // Set new instance of lego component
-                legoPieces[i, j] = Instantiate(originLego.gameObject).GetComponent<Lego>();
+                legoPieces[i, j] = Instantiate(baseLegoData.gameObject).GetComponent<Lego>();
 
                 // Set x and y value for piece and offset position accordingly.
                 legoPieces[i, j].SetGroupElement(newX, newY);
-                Vector3 setPos = originLego.transform.TransformPoint(Vector3.zero);
-                setPos += (originLego.transform.right * Lego.sqSize * i);
-                setPos += (originLego.transform.forward * Lego.sqSize * j);
+                Vector3 setPos = baseLegoData.transform.TransformPoint(Vector3.zero);
+                setPos += (baseLegoData.transform.right * Lego.sqSize * i);
+                setPos += (baseLegoData.transform.forward * Lego.sqSize * j);
 
                 legoPieces[i, j].transform.position = setPos;
 
@@ -122,11 +117,11 @@ public class LegoGroup : MonoBehaviour
         Vector3 newPos = transform.TransformPoint(Vector3.zero);
         float addMagnitudeX = Lego.sqSize * (newX / 2);
         addMagnitudeX += (newX % 2 == 0) ? -(Lego.sqSize / 2f) : 0f;
-        newPos += originLego.transform.right * addMagnitudeX;
+        newPos += baseLegoData.transform.right * addMagnitudeX;
 
         float addMagnitudeY = Lego.sqSize * (newY / 2);
         addMagnitudeY += (newY % 2 == 0) ? -(Lego.sqSize / 2f) : 0f;
-        newPos += originLego.transform.forward * addMagnitudeY;
+        newPos += baseLegoData.transform.forward * addMagnitudeY;
 
         transform.position = newPos;
 
@@ -141,14 +136,12 @@ public class LegoGroup : MonoBehaviour
         }
 
         // Adjust boxCollider size to cover all new legos.
-        Vector3 newSize = new Vector3(Lego.sqSize * newX, originLego.height, Lego.sqSize * newY);
+        Vector3 newSize = new Vector3(Lego.sqSize * newX, baseLegoData.height, Lego.sqSize * newY);
         groupCollider.size = newSize;
     }
 
     public void ChangeGroupColor(Color newColor)
     {
-        // Cannot change aspect of baseLegoData, because that would change the
-        // material of the prefab itself and effect every single lego.
-        originLego.LegoRenderer.sharedMaterial.color = newColor;
+        baseLegoData.LegoRenderer.material.color = newColor;
     }
 }

@@ -311,6 +311,7 @@ MonoBehaviour:
   myPrefab: {fileID: 5737288929504368789, guid: eea894d67cf0ec946bca498a2cbe04cb,
     type: 3}
   player: {fileID: 715621034}
+  ColorSwatch: {fileID: 0}
 --- !u!4 &90076980
 Transform:
   m_ObjectHideFlags: 0
@@ -672,7 +673,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1267266
+  m_Name: pb_Mesh18330
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2158,6 +2159,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1071429138}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &749399458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2764921037832162238, guid: 0b5f198c853b9794680bf089e64daf28,
+    type: 3}
+  m_PrefabInstance: {fileID: 1071429138}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &751814531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2986,6 +2993,11 @@ PrefabInstance:
       propertyPath: ValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2764921037832162236, guid: 0b5f198c853b9794680bf089e64daf28,
+        type: 3}
+      propertyPath: playArea
+      value: 
+      objectReference: {fileID: 749399458}
     - target: {fileID: 2764921037832162238, guid: 0b5f198c853b9794680bf089e64daf28,
         type: 3}
       propertyPath: m_Name
@@ -3079,7 +3091,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1071429138}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 749399458}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34c0cb8bdc24787439e43b7f145ac31c, type: 3}
@@ -3090,6 +3102,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2764921037832162239, guid: 0b5f198c853b9794680bf089e64daf28,
     type: 3}
   m_PrefabInstance: {fileID: 1071429138}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1127105502 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6707005887722074733, guid: 319c9c4cb939912429c7786a67e40f0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1514667566}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1244643602
 GameObject:
@@ -3143,7 +3161,18 @@ MonoBehaviour:
   sources: []
   Activated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1058033256}
+        m_MethodName: ToggleScaling
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   ValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3152,7 +3181,18 @@ MonoBehaviour:
       m_Calls: []
   Deactivated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1058033256}
+        m_MethodName: ToggleScaling
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1244643605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3166,8 +3206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputActions:
-  - {fileID: 1057481871}
   - {fileID: 2056840809}
+  - {fileID: 1057481871}
   OutputAction: {fileID: 1244643604}
 --- !u!1 &1257378713
 GameObject:
@@ -3641,6 +3681,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1347658079}
     m_Modifications:
+    - target: {fileID: 3013476052725209540, guid: 319c9c4cb939912429c7786a67e40f0d,
+        type: 3}
+      propertyPath: playArea
+      value: 
+      objectReference: {fileID: 1127105502}
     - target: {fileID: 6250577539179111349, guid: 319c9c4cb939912429c7786a67e40f0d,
         type: 3}
       propertyPath: m_RootOrder
@@ -3654,12 +3699,12 @@ PrefabInstance:
     - target: {fileID: 6250577539179111349, guid: 319c9c4cb939912429c7786a67e40f0d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6250577539179111349, guid: 319c9c4cb939912429c7786a67e40f0d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.79
       objectReference: {fileID: 0}
     - target: {fileID: 6250577539179111349, guid: 319c9c4cb939912429c7786a67e40f0d,
         type: 3}
@@ -3714,7 +3759,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1514667566}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1127105502}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34c0cb8bdc24787439e43b7f145ac31c, type: 3}

@@ -30,7 +30,6 @@ public class SceneSwapper : MonoBehaviour
     {
         if (MySceneName == SceneManager.GetActiveScene().name)
         {
-            Debug.Log("Swapping");
             AsyncOperation op = SceneManager.LoadSceneAsync(SwapToScene, loadMode);
             op.completed += Op_completed;
             UpdateAdjacentScenes();

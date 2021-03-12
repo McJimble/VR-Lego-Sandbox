@@ -31,10 +31,13 @@ public class ObjectScaler : MonoBehaviour
 
     private float lastUpdateY;
 
+    private bool scalingEnabled = false;
+
     private void Update()
     {
-        if(activationAction.Value)
+        if(scalingEnabled)
         {
+            Debug.Log("Scaling object");
             ScaleObject();
         }
         lastUpdateY = trackedObject.transform.localPosition.y;
@@ -56,6 +59,11 @@ public class ObjectScaler : MonoBehaviour
         float newScaleZ = Mathf.Clamp(objectToScale.localScale.z + unitDiff, minimumLocalScale, maximumLocalScale);
 
         objectToScale.localScale = new Vector3(newScaleX, newScaleY, newScaleZ);
-        //Debug.Log("Scaling object to :" + objectToScale.localScale);
+        //Debug.log("Scaling object to :" + objectToScale.localScale);
+    }
+
+    public void ToggleScaling(bool newVal)
+    {
+        scalingEnabled = newVal;
     }
 }
