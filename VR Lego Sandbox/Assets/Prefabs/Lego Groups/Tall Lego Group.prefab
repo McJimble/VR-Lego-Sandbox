@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseLegoData: {fileID: 2610552138874121886}
   groupCollider: {fileID: 5737288929504368790}
-  testSize: {x: 3, y: 3}
+  testSize: {x: 3, y: 1}
   testColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8004149434754532010
 GameObject:
