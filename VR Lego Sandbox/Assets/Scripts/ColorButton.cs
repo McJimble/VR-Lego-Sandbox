@@ -25,17 +25,17 @@ public class ColorButton : MonoBehaviour
             switch (change)
             {
                 case 0:
-                    ColorSwatch.GetComponent<MeshRenderer>().material = Red;
+                    ColorSwatch.GetComponent<MeshRenderer>().material.color = Red.color;
                     change++;
                     break;
 
                 case 1:
-                    ColorSwatch.GetComponent<MeshRenderer>().material = Green;
+                    ColorSwatch.GetComponent<MeshRenderer>().material.color = Green.color;
                     change++;
                     break;
             
                 case 2:
-                    ColorSwatch.GetComponent<MeshRenderer>().material = Blue;
+                    ColorSwatch.GetComponent<MeshRenderer>().material.color = Blue.color;
                     change = 0;
                     break;
             }

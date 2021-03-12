@@ -37,14 +37,17 @@ public class Lego : MonoBehaviour
                 legoMaterial = LegoRenderer.material;
             return legoMaterial; 
         }
+        private set
+        {
+            legoMaterial = value;
+        }
     }
 
     public Renderer LegoRenderer
     {
         get
         {
-            if (legoRenderer == null)
-                legoRenderer = GetComponentInChildren<Renderer>();
+            legoRenderer = GetComponentInChildren<Renderer>();
             return legoRenderer;
         }
     }
@@ -102,7 +105,8 @@ public class Lego : MonoBehaviour
     // material of any copy of this lego by changing LegoRenderer.sharedMaterial.
     public void RefreshLegoMaterial()
     {
-        LegoMaterial.color = LegoMaterial.color;
+        LegoMaterial = new Material(LegoMaterial);
+        LegoRenderer.material = LegoMaterial;
         snapPinRenderer.material = LegoMaterial;
     }
 
