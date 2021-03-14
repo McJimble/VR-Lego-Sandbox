@@ -8,6 +8,7 @@ public class ColorButton : MonoBehaviour
     public Material Red;
     public Material Green;
     public Material Blue;
+    public GameObject player;
     private int change = 0;
 
     // Start is called before the first frame update
@@ -55,4 +56,42 @@ public class ColorButton : MonoBehaviour
                 break;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other != null) { 
+            switch (change) 
+            {
+                case 1:
+                    if (other.transform.tag == "LegoGroup")
+                    {
+
+                        Destroy(other.gameObject);
+                    }
+                    break;
+                case 2:
+                    if (other.transform.tag == "LegoGroup")
+                    {
+                        GameObject newObj = Instantiate(other.gameObject, player.transform.position + (player.transform.forward * 3), Quaternion.identity);
+                    }
+                    break;
+        
+        
+            }
+        }
+
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+
+    }
+
 }
