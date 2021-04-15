@@ -10,6 +10,7 @@ public class ColorButton : MonoBehaviour
     public Material Blue;
     public GameObject player;
     private int change = 0;
+    public AudioClip Delete;
 
     // Start is called before the first frame update
     void Start()
@@ -65,13 +66,14 @@ public class ColorButton : MonoBehaviour
                 case 1:
                     if (other.transform.tag == "LegoGroup")
                     {
-
+                        AudioSource.PlayClipAtPoint(Delete, transform.position, 1);
                         Destroy(other.gameObject);
                     }
                     break;
                 case 2:
                     if (other.transform.tag == "LegoGroup")
                     {
+
                         GameObject newObj = Instantiate(other.gameObject, player.transform.position + (player.transform.forward * 3), Quaternion.identity);
                     }
                     break;

@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 4597600983115499600}
   - component: {fileID: 5067263472856201981}
   - component: {fileID: 5067263472856201980}
+  - component: {fileID: 2335647881493927668}
   m_Layer: 0
   m_Name: Flat Lego Group
   m_TagString: LegoGroup
@@ -296,6 +297,21 @@ MonoBehaviour:
   groupCollider: {fileID: 5067263472856201981}
   testSize: {x: 4, y: 4}
   testColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &2335647881493927668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5067263472856201982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e618f846fc9ac4cbb03a22d262b838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spawn: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  CollideWithLego: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
+  CollideWithOther: {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
 --- !u!1 &7410685442287493313
 GameObject:
   m_ObjectHideFlags: 0
