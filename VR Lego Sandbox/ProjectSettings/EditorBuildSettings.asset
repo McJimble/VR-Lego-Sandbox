@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 6949ef9b79b1c34488b99c180d170eac
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainSceneOLD.unity
     guid: 32c570b8cef4a084e94e1fb74c715e51
+  - enabled: 1
+    path: Assets/Scenes/JamesScene.unity
+    guid: fd7a666b97b90f74895f01e14c44a849
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: c9a48cc0bbd8e3f4bb0f4df1fc9c1458,
       type: 2}

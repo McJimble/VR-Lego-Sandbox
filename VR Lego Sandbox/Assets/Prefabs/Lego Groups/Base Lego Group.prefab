@@ -235,13 +235,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   largerRefreshSize: 1
-  testSize: {x: 2, y: 3}
+  testSize: {x: 1, y: 1}
   testColor: {r: 0, g: 0, b: 0, a: 0}
   lockRotation: 0
   baseLegoData: {fileID: 2160776856610781864}
   groupCollider: {fileID: 408608542826339740}
+  interactableInternalContainer: {fileID: 8690677334179986764}
   connectedGroups: []
   disabledLegoElements: []
+  allowSelection: 0
 --- !u!114 &7948034691673012054
 MonoBehaviour:
   m_ObjectHideFlags: 0

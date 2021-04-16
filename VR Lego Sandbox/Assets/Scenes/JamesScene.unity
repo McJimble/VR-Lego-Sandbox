@@ -10788,12 +10788,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1432033959}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1441984930 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3818812769257424112, guid: 4ca4426dfc7fade44bd5d844508cc417,
-    type: 3}
-  m_PrefabInstance: {fileID: 2480226637564142706}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1445396754
 GameObject:
   m_ObjectHideFlags: 0
@@ -17395,12 +17389,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1775938981}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1776868473 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8690677334179986764, guid: 9fe4699db417e1748bbd6654f22e706e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6977635284488624830}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1797718895
 GameObject:
   m_ObjectHideFlags: 0
@@ -18046,12 +18034,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1142417563}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1882649259 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4480636451249123459, guid: 68f5778156cc77740b42418cc3d68ca7,
-    type: 3}
-  m_PrefabInstance: {fileID: 2468748868412697403}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1892311236 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5839046843648530548, guid: f8e0d2a59209d854b91b04b5db7df9ca,
@@ -18142,12 +18124,6 @@ Transform:
   m_Father: {fileID: 1033956213}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1901370245 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7462229249577226459, guid: 173fd4ebfed0588428fb1aff2e397ca2,
-    type: 3}
-  m_PrefabInstance: {fileID: 4882792970281786555}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1913288257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20460,11 +20436,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flat Lego Group
       objectReference: {fileID: 0}
-    - target: {fileID: 4836510511431569490, guid: 68f5778156cc77740b42418cc3d68ca7,
-        type: 3}
-      propertyPath: interactableInternalContainer
-      value: 
-      objectReference: {fileID: 1882649259}
     - target: {fileID: 6391214165142950665, guid: 68f5778156cc77740b42418cc3d68ca7,
         type: 3}
       propertyPath: m_RootOrder
@@ -20539,16 +20510,6 @@ PrefabInstance:
       propertyPath: LastUngrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1445396758}
-    - target: {fileID: 5318736078303929376, guid: 4ca4426dfc7fade44bd5d844508cc417,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318736078303929377, guid: 4ca4426dfc7fade44bd5d844508cc417,
-        type: 3}
-      propertyPath: interactableInternalContainer
-      value: 
-      objectReference: {fileID: 1441984930}
     - target: {fileID: 5318736078303929379, guid: 4ca4426dfc7fade44bd5d844508cc417,
         type: 3}
       propertyPath: m_Name
@@ -20567,7 +20528,7 @@ PrefabInstance:
     - target: {fileID: 5936704784622167930, guid: 4ca4426dfc7fade44bd5d844508cc417,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.397
+      value: 2.24
       objectReference: {fileID: 0}
     - target: {fileID: 5936704784622167930, guid: 4ca4426dfc7fade44bd5d844508cc417,
         type: 3}
@@ -20608,11 +20569,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6400951831354270070, guid: 4ca4426dfc7fade44bd5d844508cc417,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ca4426dfc7fade44bd5d844508cc417, type: 3}
@@ -20683,11 +20639,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Lego Group
       objectReference: {fileID: 0}
-    - target: {fileID: 1927538736830623754, guid: 173fd4ebfed0588428fb1aff2e397ca2,
-        type: 3}
-      propertyPath: interactableInternalContainer
-      value: 
-      objectReference: {fileID: 1901370245}
     - target: {fileID: 8913650056734616755, guid: 173fd4ebfed0588428fb1aff2e397ca2,
         type: 3}
       propertyPath: FirstGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -20707,11 +20658,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 408608542826339741, guid: 9fe4699db417e1748bbd6654f22e706e,
-        type: 3}
-      propertyPath: interactableInternalContainer
-      value: 
-      objectReference: {fileID: 1776868473}
     - target: {fileID: 408608542826339743, guid: 9fe4699db417e1748bbd6654f22e706e,
         type: 3}
       propertyPath: m_Name
