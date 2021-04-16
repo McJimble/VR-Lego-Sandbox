@@ -7,6 +7,7 @@ public class Lego : MonoBehaviour
     // All legos use a set width and length. Height may vary, but size must be
     // constant for groups of them to properly resize.
     public const float sqSize = 0.4f;
+    public const float snapBoxHeight = 0.2f;
 
     // All unique lego prefabs have a varying height that should be defined
     // in the inspector, so as to avoid conflicts b/t models and localScale changes.
@@ -17,23 +18,41 @@ public class Lego : MonoBehaviour
     [SerializeField] private LegoGroup attachedGroup;
 
     // Collider from interactable prefab's meshContainer (ideally)
-    [SerializeField] private BoxCollider attachedCollider;
+    // Acts as a snapZoneTrigger area for detected legos to attach to the main group.
+    [SerializeField] private BoxCollider snapZoneTrigger;
 
+    [SerializeField] private GameObject mainBrickObject;
     [SerializeField] private GameObject snapPinObject;
-    private Renderer snapPinRenderer;
 
     // Element in array of current lego group
     [SerializeField] private int groupX;
     [SerializeField] private int groupY;
 
-    [SerializeField] private Renderer mainLegoRenderer;
+    private Renderer snapPinRenderer;
+    private Renderer mainLegoRenderer;
+
+    public Vector3 DefaultSnapZoneSize
+    {
+        get
+        {
+            return new Vector3(sqSize, snapBoxHeight, sqSize);
+        }
+    }
+
+    public Vector3 DefaultSnapZoneOffset
+    {
+        get
+        {
+            return new Vector3(0, (snapBoxHeight + height) * 0.5f, 0);
+        }
+    }
 
     public Renderer LegoRenderer
     {
         get
         {
             if (mainLegoRenderer == null)
-                mainLegoRenderer = GetComponentInChildren<Renderer>();
+                mainLegoRenderer = mainBrickObject.GetComponent<Renderer>(); ;
             return mainLegoRenderer;
         }
     }
@@ -57,26 +76,38 @@ public class Lego : MonoBehaviour
         }
     }
 
-    public BoxCollider AttachedCollider
+    public BoxCollider SnapZoneTrigger
     { 
         get 
-        { 
-            if (attachedCollider == null)
+        {
+            if (snapZoneTrigger == null)
             {
-                attachedCollider = GetComponentInChildren<BoxCollider>();
+                Debug.LogWarning("Please assign an attached collider in the inspector!");
+                snapZoneTrigger = GetComponent<BoxCollider>();
             }
-            return attachedCollider; 
+            return snapZoneTrigger; 
         }
         private set
         {
-            attachedCollider = value;
+            snapZoneTrigger = value;
         }
+    }
+
+    public Vector2Int GroupElement
+    {
+        get { return new Vector2Int(groupX, groupY); }
     }
 
     private void Awake()
     {
-        //Debug.Log(transform.TransformPoint(Vector3.zero));
-        AttachedCollider.isTrigger = true;
+        // Initialize SnapZone Trigger if collider for one exists
+        if (SnapZoneTrigger == null)
+            Destroy(this.gameObject);
+        SnapZoneTrigger.isTrigger = true;
+        SnapZoneTrigger.size = DefaultSnapZoneSize;
+        SnapZoneTrigger.center = DefaultSnapZoneOffset;
+
+        mainLegoRenderer = mainBrickObject.GetComponent<Renderer>();
         snapPinRenderer = snapPinObject.GetComponent<Renderer>();
     }
 

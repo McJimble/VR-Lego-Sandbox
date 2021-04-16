@@ -9,9 +9,9 @@ public class AudioLego : MonoBehaviour
     public AudioClip CollideWithOther;
 
     //Play Spawn Sound
-    void Awake()
+    public void PlaySpawnSound()
     {
-        AudioSource.PlayClipAtPoint(Spawn, transform.position, 1);
+        AudioSource.PlayClipAtPoint(Spawn, transform.position, .5f);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -26,6 +26,4 @@ public class AudioLego : MonoBehaviour
         }
 
     }
-
-
 }
