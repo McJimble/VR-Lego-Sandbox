@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioCanvas : MonoBehaviour
 {
     public AudioClip ClickButton;
-
+    public AudioClip DeleteButton;
 
     public void ButtonClick()
     {
@@ -13,8 +13,8 @@ public class AudioCanvas : MonoBehaviour
 
     }
 
-
-
-
-
+    public void DeleteLego()
+    {
+        AudioSource.PlayClipAtPoint(DeleteButton, transform.position, 1);
+    }
 }

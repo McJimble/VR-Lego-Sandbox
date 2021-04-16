@@ -35,6 +35,9 @@ public class LegoGroup : MonoBehaviour
     public List<LegoGroup> connectedGroups = new List<LegoGroup>();
     public List<Vector2Int> disabledLegoElements = new List<Vector2Int>();
 
+    [SerializeField] private bool allowSelection;
+
+
     // Is group initialized with an existing base piece?
     private bool initialized = false;
     
@@ -59,6 +62,11 @@ public class LegoGroup : MonoBehaviour
     public Rigidbody MainRB
     {
         get { return mainRB; }
+    }
+
+    public bool AllowSelection
+    {
+        get { return allowSelection; }
     }
 
     // Returns number of 1x1 legos in the group
@@ -92,8 +100,17 @@ public class LegoGroup : MonoBehaviour
     public void SetKinematic(bool active)
     {
         mainRB.isKinematic = active;
-        if (active) ResetRotation();
-    }  
+        ToggleSelection(active);
+        if (active)
+        {
+            ResetRotation();
+        }
+    }
+
+    public void ToggleSelection(bool active)
+    {
+        allowSelection = active;
+    }
 
     // Adds a new group as a neighbor, and creates a fixed joint for this lego.
     // Also adds the data to the newGroup, but WITHOUT adding a fixed joint component.
@@ -110,7 +127,11 @@ public class LegoGroup : MonoBehaviour
         this.connectedJoints.Add(newGroup.GroupID, newJoint);
 
         newGroup.ToggleInteractions(false);
+        newGroup.ToggleSelection(true);
         this.ToggleInteractions(false);
+        this.ToggleSelection(true);
+
+
 
         foreach (var lego in SnapManager.Instance.GetHoveredLegos())
         {
@@ -131,9 +152,9 @@ public class LegoGroup : MonoBehaviour
             interactableInternalContainer = transform.Find("Internal").gameObject;
 
         mainRB = GetComponent<Rigidbody>();
-        if (mainRB.isKinematic)
-            ToggleInteractions(false);
 
+        ToggleSelection(MainRB.isKinematic);
+        ToggleInteractions(!MainRB.isKinematic);
     }
 
     private void Start()
@@ -157,7 +178,7 @@ public class LegoGroup : MonoBehaviour
 
     private void Update()
     {
-        ChangeGroupColor(testColor);
+        //ChangeGroupColor(testColor);
         //if(Input.GetKeyDown(KeyCode.X))
         //{
         //    RefreshLegoGroup(testSize.x - 1, testSize.y - 1);
