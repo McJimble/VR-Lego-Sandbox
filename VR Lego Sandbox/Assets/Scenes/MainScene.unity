@@ -332,7 +332,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh73868
+  m_Name: pb_Mesh18166
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1505,7 +1505,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh73848
+  m_Name: pb_Mesh18146
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5964,6 +5964,11 @@ PrefabInstance:
       propertyPath: Activated.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3150161830952949327, guid: c8c69135a8226f344872c438b8454adf,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62dd673e99e07484aabf8f79e4fd5cfb, type: 2}
     - target: {fileID: 3585474428954749725, guid: c8c69135a8226f344872c438b8454adf,
         type: 3}
       propertyPath: m_Mesh
@@ -6314,6 +6319,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: WorldUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4601905095100571179, guid: c8c69135a8226f344872c438b8454adf,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62dd673e99e07484aabf8f79e4fd5cfb, type: 2}
+    - target: {fileID: 4601905095156149053, guid: c8c69135a8226f344872c438b8454adf,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62dd673e99e07484aabf8f79e4fd5cfb, type: 2}
     - target: {fileID: 4601905095168848778, guid: c8c69135a8226f344872c438b8454adf,
         type: 3}
       propertyPath: m_TagString
@@ -6344,6 +6359,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: WorldUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4601905095326211220, guid: c8c69135a8226f344872c438b8454adf,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62dd673e99e07484aabf8f79e4fd5cfb, type: 2}
     - target: {fileID: 4601905095328605158, guid: c8c69135a8226f344872c438b8454adf,
         type: 3}
       propertyPath: m_TagString
@@ -6607,6 +6627,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8790854758735351222, guid: c8c69135a8226f344872c438b8454adf,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 06313b06e85998c4db4988283a987db8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8c69135a8226f344872c438b8454adf, type: 3}
 --- !u!114 &1878619069 stripped
