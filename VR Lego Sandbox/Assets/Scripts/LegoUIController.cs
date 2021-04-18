@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LegoUIController : MonoBehaviour
+public class LegoUIController : Singleton<LegoUIController>
 {
     [SerializeField] private Transform rayCastPoint;
     [SerializeField] private GameObject defaultCanvas;
@@ -15,6 +15,7 @@ public class LegoUIController : MonoBehaviour
     [SerializeField] private LegoGroup selectedGroup;
     [SerializeField] private int selectedLegoX;
     [SerializeField] private int selectedLegoY;
+    [SerializeField] private testspawn cloneSpawner;
 
 
     // Attempts to find a LegoGroup object to select
@@ -30,10 +31,19 @@ public class LegoUIController : MonoBehaviour
             ToggleAltCanvas(false);
             return;
         }
+        else if(!hitInfo.transform.CompareTag("LegoGroup") && !hitInfo.transform.CompareTag("WorldUI"))
+        {
+            // Have to do two separate ifs because it could otherwise throw an error
+            // for the transform being null in the above check.
+            ToggleAltCanvas(false);
+            return;
+        }
         if (hitInfo.transform.TryGetComponent<LegoGroup>(out tryForGroup))
         {
             ToggleAltCanvas(true);
-            RefreshAlternateUI(tryForGroup);
+            defaultCanvas.GetComponent<AudioCanvas>().ButtonClick();
+            SetSelectedLego(tryForGroup);
+            RefreshAlternateUI();
         }
     }
 
@@ -42,6 +52,7 @@ public class LegoUIController : MonoBehaviour
         if(selectedGroup != null)
         {
             this.selectedGroup = selectedGroup;
+            this.selectedGroup.ToggleLegoHighlights(true);
             selectedLegoX = selectedGroup.GroupSize.x;
             selectedLegoY = selectedGroup.GroupSize.y;
         }
@@ -53,8 +64,11 @@ public class LegoUIController : MonoBehaviour
         }
     }
 
-    public void RefreshAlternateUI(LegoGroup selectedGroup)
+    public void RefreshAlternateUI()
     {
+        if (selectedGroup == null)
+            return;
+
         SetSelectedLego(selectedGroup);
         if(selectedGroup.AllowSelection)
         {
@@ -74,11 +88,13 @@ public class LegoUIController : MonoBehaviour
         {
             alternateCanvas.SetActive(true);
             defaultCanvas.SetActive(false);
+            ToggleSelectedHighlights(false);
         }
         else
         {
             alternateCanvas.SetActive(false);
             defaultCanvas.SetActive(true);
+            ToggleSelectedHighlights(false);
             this.selectedGroup = null;
         }
     }
@@ -94,14 +110,14 @@ public class LegoUIController : MonoBehaviour
     {
         Debug.Log("Deleting");
         if (selectedGroup == null) return;
-        Destroy(selectedGroup.gameObject);
+        selectedGroup.DestroyLegoObject();
         // TODO: CREATE DESTROY FUNCTION ON LEGO ITSELF, SO PREVIOUSLY USED SNAP POINTS CAN BE RETURNED.
         selectedGroup = null;
     }
 
     public void ChangeSelectedGroupX(bool increase)
     {
-        int newX = selectedLegoX += (increase) ? 1 : -1;
+        int newX = selectedLegoX + ((increase) ? 1 : -1);
         if (newX <= 0) return;
         ChangeLegoSize(newX, selectedLegoY);
         selectedLegoX = newX;
@@ -109,7 +125,7 @@ public class LegoUIController : MonoBehaviour
 
     public void ChangeSelectedGroupY(bool increase)
     {
-        int newY = selectedLegoY += (increase) ? 1 : -1;
+        int newY = selectedLegoY + ((increase) ? 1 : -1);
         if (newY <= 0) return;
         ChangeLegoSize(selectedLegoX, newY);
         selectedLegoY = newY;
@@ -123,7 +139,26 @@ public class LegoUIController : MonoBehaviour
 
     public void SetSelectedToKinematic()
     {
+        if (selectedGroup == null)
+            return; 
+
         selectedGroup.SetKinematic(true);
-        RefreshAlternateUI(selectedGroup);
+        RefreshAlternateUI();
+    }
+
+    public void ToggleSelectedHighlights(bool active)
+    {
+        if(selectedGroup != null)
+        {
+            selectedGroup.ToggleLegoHighlights(active);
+        }
+    }
+
+    public void CloneSelectedLego()
+    {
+        if (selectedGroup == null)
+            return;
+
+        cloneSpawner.CloneGroup(selectedGroup);
     }
 }

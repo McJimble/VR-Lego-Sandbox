@@ -7,7 +7,7 @@ public class Lego : MonoBehaviour
     // All legos use a set width and length. Height may vary, but size must be
     // constant for groups of them to properly resize.
     public const float sqSize = 0.4f;
-    public const float snapBoxHeight = 0.2f;
+    public const float snapBoxHeight = 0.1f;
 
     // All unique lego prefabs have a varying height that should be defined
     // in the inspector, so as to avoid conflicts b/t models and localScale changes.
@@ -24,6 +24,8 @@ public class Lego : MonoBehaviour
     [SerializeField] private GameObject mainBrickObject;
     [SerializeField] private GameObject snapPinObject;
 
+    [SerializeField] private GameObject highlightMeshContainer;
+
     // Element in array of current lego group
     [SerializeField] private int groupX;
     [SerializeField] private int groupY;
@@ -35,7 +37,7 @@ public class Lego : MonoBehaviour
     {
         get
         {
-            return new Vector3(sqSize, snapBoxHeight, sqSize);
+            return new Vector3(sqSize * 0.5f, snapBoxHeight, sqSize * 0.5f);
         }
     }
 
@@ -98,6 +100,11 @@ public class Lego : MonoBehaviour
         get { return new Vector2Int(groupX, groupY); }
     }
 
+    public GameObject HighlightMeshContainer
+    {
+        get { return highlightMeshContainer; }
+    }
+
     private void Awake()
     {
         // Initialize SnapZone Trigger if collider for one exists
@@ -124,6 +131,11 @@ public class Lego : MonoBehaviour
     {
         LegoRenderer.material = new Material(mainLegoRenderer.material);
         snapPinRenderer.material = mainLegoRenderer.material;
+    }
+
+    public void ToggleHighlighter(bool active)
+    {
+        highlightMeshContainer.SetActive(active);
     }
 
     private void OnDestroy()

@@ -10,7 +10,6 @@ public class AudioCanvas : MonoBehaviour
     public void ButtonClick()
     {
         AudioSource.PlayClipAtPoint(ClickButton, transform.position, 1);
-
     }
 
     public void DeleteLego()

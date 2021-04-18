@@ -12,7 +12,7 @@ public class LegoGroup : MonoBehaviour
 {
     [Header("DEBUG")]
     [SerializeField] private bool largerRefreshSize;
-    [SerializeField] private Vector2Int testSize;
+    public Vector2Int testSize;
     public Color testColor;
     public bool lockRotation = false;
 
@@ -33,13 +33,13 @@ public class LegoGroup : MonoBehaviour
     // Dictionary of connected legos (using their ID) and their fixed joint components.
     public Dictionary<int, FixedJoint> connectedJoints = new Dictionary<int, FixedJoint>();
     public List<LegoGroup> connectedGroups = new List<LegoGroup>();
-    public List<Vector2Int> disabledLegoElements = new List<Vector2Int>();
+    public List<Lego> snappedToLegos = new List<Lego>();
 
     [SerializeField] private bool allowSelection;
 
 
     // Is group initialized with an existing base piece?
-    private bool initialized = false;
+    [SerializeField] private bool initialized = false;
     
     private static int currGroupID = 0;
     private int groupID;
@@ -101,6 +101,7 @@ public class LegoGroup : MonoBehaviour
     {
         mainRB.isKinematic = active;
         ToggleSelection(active);
+        ToggleInteractions(!active);
         if (active)
         {
             ResetRotation();
@@ -110,6 +111,23 @@ public class LegoGroup : MonoBehaviour
     public void ToggleSelection(bool active)
     {
         allowSelection = active;
+    }
+
+    public void ToggleLegoHighlights(bool active)
+    {
+        // In case it's toggled on while already on, check first lego
+        // for whether it's already on, and return if the state is the
+        // same as the state of "active"
+        if (baseLegoData.HighlightMeshContainer.activeSelf == active)
+            return;
+
+        for(int i = 0; i < legoPieces.GetLength(0); i++)
+        {
+            for (int j = 0; j < legoPieces.GetLength(1); j++)
+            {
+                legoPieces[i, j].ToggleHighlighter(active);
+            }
+        }
     }
 
     // Adds a new group as a neighbor, and creates a fixed joint for this lego.
@@ -126,21 +144,42 @@ public class LegoGroup : MonoBehaviour
         newGroup.connectedJoints.Add(this.GroupID, newJoint);
         this.connectedJoints.Add(newGroup.GroupID, newJoint);
 
-        newGroup.ToggleInteractions(false);
-        newGroup.ToggleSelection(true);
-        this.ToggleInteractions(false);
-        this.ToggleSelection(true);
-
+        newGroup.SetKinematic(true);
+        this.SetKinematic(true);
 
 
         foreach (var lego in SnapManager.Instance.GetHoveredLegos())
         {
-            disabledLegoElements.Add(lego.GroupElement);
+            snappedToLegos.Add(lego);
             lego.SnapZoneTrigger.enabled = false;
 
             //For testing what is disabled:
-            lego.gameObject.SetActive(false);
+            //lego.gameObject.SetActive(false);
         }
+    }
+
+    public void DestroyLegoObject()
+    {
+        foreach(var lego in snappedToLegos)
+        {
+            lego.SnapZoneTrigger.enabled = true;
+            //lego.gameObject.SetActive(true);
+        }
+
+        Destroy(this.gameObject);
+    }
+
+    public void OnGrabbed()
+    {
+        SnapManager.Instance.TrySetAttacher(this);
+        ToggleGroupCollision(false);
+    }
+
+    public void OnUngrabbed()
+    {
+        SnapManager.Instance.AttemptPlaceLego();
+        ToggleGroupCollision(true);
+        ResetRotation();
     }
 
     private void Awake()

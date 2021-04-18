@@ -28,6 +28,7 @@ public class SnapManager : Singleton<SnapManager>
         if (checkForGroup != null)
         {
             attacherGroup = checkForGroup;
+            attacherGroup.ToggleLegoHighlights(true);
         }
     }
 
@@ -36,6 +37,7 @@ public class SnapManager : Singleton<SnapManager>
         if (attacherGroup != null)
             return;
         attacherGroup = newGroup;
+        attacherGroup.ToggleLegoHighlights(true);
     }
 
     public LegoGroup GetAttachedTo()
@@ -67,6 +69,10 @@ public class SnapManager : Singleton<SnapManager>
 
     public void ClearAttacher()
     {
+        if(attacherGroup != null)
+        {
+            attacherGroup.ToggleLegoHighlights(false);
+        }
         attacherGroup = null;
         ClearAttachedTo();
         ClearHoveredLegos();
@@ -129,7 +135,7 @@ public class SnapManager : Singleton<SnapManager>
             attacherGroup.transform.rotation = this.transform.rotation;
 
             attacherGroup.AddConnectedLego(attachedToGroup);
-
+            LegoUIController.Instance.RefreshAlternateUI();
         }
         ClearAttacher();
     }

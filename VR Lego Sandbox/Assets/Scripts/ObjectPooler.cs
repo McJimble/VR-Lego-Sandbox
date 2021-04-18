@@ -20,6 +20,7 @@ public class ObjectPooler : Singleton<ObjectPooler>
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab, store.transform);
+                obj.name = pool.prefab.name;
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -48,6 +49,7 @@ public class ObjectPooler : Singleton<ObjectPooler>
         objToSpawn.transform.parent = null;
         objToSpawn.transform.position = position;
         objToSpawn.transform.rotation = rotation;
+        objToSpawn.name = name;
 
         return objToSpawn;
     }
